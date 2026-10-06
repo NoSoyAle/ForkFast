@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: forkfast-backend
+
+  # --- Perfil de desarrollo: base de datos en memoria (H2) ---
+  # Cuando tengas tu base de datos cloud (ej. RDS Postgres), reemplaza estas
+  # propiedades por las de conexión reales y quita h2 del classpath si quieres.
+  datasource:
+    url: jdbc:h2:mem:forkfastdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# --- Configuración de Azure AD (IDaaS) ---
+# Reemplaza {tenant-id} por el Directory (tenant) ID de tu App Registration en Azure.
+# El audience debe coincidir con el Application ID URI o Client ID expuesto por la API
+# en Azure AD (Expose an API).
+azure:
+  ad:
+    issuer-uri: https://login.microsoftonline.com/e6ec1370-abd7-4bb3-8deb-8834e6989a27/v2.0
+    audience: api://5cd80da2-4880-475f-8d55-8e448ea3bf6d

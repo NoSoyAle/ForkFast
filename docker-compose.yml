@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: ./backend
+    container_name: forkfast-backend
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    # Límite de memoria recomendado para no reventar un t3.micro (1GB RAM total)
+    mem_limit: 450m
+
+  frontend:
+    build: ./frontend
+    container_name: forkfast-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    mem_limit: 100m
