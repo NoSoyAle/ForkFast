@@ -1,0 +1,19 @@
+# Dependencias
+/node_modules
+
+# Build
+/dist
+/out-tsc
+/.angular
+
+# IDE
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Variables sensibles (si separas config real del environment.ts de ejemplo)
+src/environments/environment.local.ts
+*.env
